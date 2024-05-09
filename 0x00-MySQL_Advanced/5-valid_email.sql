@@ -1,6 +1,6 @@
 -- create trigger to update email validation
 DROP TRIGGER IF EXISTS validate;
-DELIMITER $$ ;
+DELIMITER $$;
 CREATE TRIGGER validate BEFORE UPDATE
     ON users FOR EACH ROW
     BEGIN
@@ -8,4 +8,4 @@ CREATE TRIGGER validate BEFORE UPDATE
             SET NEW.valid_email = 0;
         END IF;
     END;
-DELIMITER ; $$
+DELIMITER ;$$
