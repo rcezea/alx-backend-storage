@@ -2,9 +2,9 @@
 DROP PROCEDURE IF EXISTS AddBonus;
 DELIMITER $$;
 CREATE PROCEDURE AddBonus(
-    IN users_id INT,
+    IN user_id INT,
     IN project_name VARCHAR(255),
-    IN scores INT
+    IN score INT
 )
 BEGIN
     DECLARE check_prid INT;
