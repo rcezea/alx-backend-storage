@@ -5,6 +5,6 @@ CREATE TRIGGER IF NOT EXISTS validate
     FOR EACH ROW
     BEGIN
         IF OLD.email != NEW.email THEN
-            UPDATE users SET valid_email = false WHERE id = OLD.id;
+            UPDATE users SET NEW.valid_email = false WHERE id = OLD.id;
         END IF;
     END
