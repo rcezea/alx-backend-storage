@@ -7,6 +7,16 @@ CREATE PROCEDURE AddBonus(
     IN scores INT
 )
 BEGIN
-    INSERT INTO corrections(user_id,project_id, score) VALUES (users_id,(SELECT id AS new FROM projects WHERE project_name = name), scores);
-END;
+    DECLARE check_prid INT;
+	SELECT id INTO check_prid FROM projects
+		WHERE name=project_name;
+	IF check_prid <=> NULL
+	THEN
+		INSERT INTO projects (name)
+			VALUES (project_name);
+	END IF;
+	SELECT id INTO check_prid FROM projects
+		WHERE name = project_name;
+	INSERT INTO corrections (user_id, project_id, score)
+		VALUES (user_id, check_prid, score);END;
 DELIMITER ;$$
