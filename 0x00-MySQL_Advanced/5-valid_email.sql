@@ -1,5 +1,10 @@
 -- create trigger to update email validation
-CREATE TRIGGER validate
-    AFTER UPDATE ON users
+DROP TRIGGER IF EXISTS validate;
+CREATE TRIGGER IF NOT EXISTS validate
+    BEFORE UPDATE ON users
     FOR EACH ROW
-    UPDATE users SET valid_email = DEFAULT WHERE OLD.email != NEW.email;
+    BEGIN
+        IF OLD.email != NEW.email THEN
+            SET NEW.valid_email = false;
+        END IF;
+    END
