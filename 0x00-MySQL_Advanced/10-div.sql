@@ -1,5 +1,6 @@
 -- create a function safeDiv
 DROP FUNCTION IF EXISTS SafeDiv;
+DELIMITER $$;
 CREATE FUNCTION SafeDiv(
     a INT,
     b INT
@@ -11,4 +12,4 @@ BEGIN
         RETURN a/b;
     END IF;
 END;
-
+DELIMITER ;$$
